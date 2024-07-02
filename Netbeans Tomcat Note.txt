@@ -1,0 +1,7 @@
+JDK 17.0.10
+Netbeans 15
+Tomcat 10.0.27 - JRE 1.8.0_241
+Username and Password: tomcat
+<user password="tomcat" roles="manager-gui,manager-script,admin" username="tomcat"/>
+jakarta jstl 3.0.1
+jakarta jstl-api 3.0.0
