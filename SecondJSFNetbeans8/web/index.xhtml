@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Home</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                color: #333;
+            }
+            .container {
+                width: 80%;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+            h1 {
+                text-align: center;
+                color: #555;
+            }
+            .button {
+                display: inline-block;
+                padding: 10px 20px;
+                margin: 10px 0;
+                background-color: #5cb85c;
+                color: #fff;
+                text-decoration: none;
+                border-radius: 4px;
+                border: none;
+                cursor: pointer;
+            }
+            .btn-delete{
+                background-color: #ff0000;
+            }
+            .button:hover {
+                background-color: #4cae4c;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            table, th, td {
+                border: 1px solid #ddd;
+            }
+            th, td {
+                padding: 10px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            .actions {
+                display: flex;
+                justify-content: space-between;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h1>Employee Management</h1>
+
+            <h:form>
+                <h:panelGrid>
+                    <h:commandButton action="add_employee.xhtml" value="Add Employee" styleClass="button"/>
+                </h:panelGrid>
+            </h:form>
+
+            <h2>All Employees</h2>
+
+            <h:dataTable value="#{employeeManageBean.employeeList()}" var="employee">
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{employee.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Email</f:facet>
+                    #{employee.email}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Address</f:facet>
+                    #{employee.address}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <div class="actions">
+                        <h:form>
+                            <h:commandButton value="Edit" action="#{employeeManageBean.editEmployee(employee.id)}" styleClass="button"/>
+                        </h:form>
+                        <h:form>
+                            <h:commandButton value="Delete" action="#{employeeManageBean.deleteEmployee(employee.id)}" styleClass="button btn-delete" onclick="return confirm('Are you sure?')"/>
+                        </h:form>
+                    </div>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </h:body>
+</html>
